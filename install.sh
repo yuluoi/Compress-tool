@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ===================================================================
-#             个人压缩工具 - 一键部署脚本 (自用版)
+#             个人压缩工具 - 一键部署脚本 (最终优化版)
 # ===================================================================
 
 # --- 配置区 ---
@@ -9,10 +9,10 @@
 GITHUB_USER="yuluoi"
 
 # 2. 你的项目仓库名
-REPO_NAME="compress-tool" # 或者你给仓库起的名字
+REPO_NAME="Compress-tool"
 
 # 3. 你想在 Termux 里使用的最终命令名
-COMMAND_NAME="yasuo" # 或者你喜欢的任何短名字
+COMMAND_NAME="yasuo"
 # --- 配置结束 ---
 
 # 构造脚本的下载地址
@@ -49,10 +49,11 @@ chmod 755 "$INSTALL_DIR/$COMMAND_NAME"
 echo ">> 已设置执行权限 (755)。"
 echo ""
 
-# 步骤 5: 确保 PATH 配置正确
-# (这部分逻辑保留，以防万一)
+# 步骤 5: 确保 PATH 配置正确 (已优化)
 if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
     echo ">> 正在将安装目录添加到 Shell 配置中..."
+    
+    # 检测用户使用的 Shell 配置文件
     if [ -n "$BASH_VERSION" ]; then
         SHELL_CONFIG_FILE="$HOME/.bashrc"
     elif [ -n "$ZSH_VERSION" ]; then
@@ -60,9 +61,17 @@ if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
     else
         SHELL_CONFIG_FILE="$HOME/.profile"
     fi
-    # 避免重复添加
+
+    # 检查 PATH 是否已在文件中，避免重复添加
     if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' "$SHELL_CONFIG_FILE"; then
+        
+        # 【关键优化】在追加内容前，先确保文件末尾有一个换行符！
+        echo "" >> "$SHELL_CONFIG_FILE"
+        
+        # 现在再追加我们的 PATH 配置，确保它从新的一行开始
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL_CONFIG_FILE"
+
+        echo "   已将 PATH 配置写入 $SHELL_CONFIG_FILE"
     fi
 fi
 
