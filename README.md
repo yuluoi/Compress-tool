@@ -13,7 +13,7 @@
 在新的 Termux 环境中，运行以下单行命令即可完成所有安装和配置。
 
 ```bash
-bash <(curl -sL https://raw.githubusercontent.com/你的GitHub用户名/你的仓库名/main/install.sh)
+bash <(curl -sL https://raw.githubusercontent.com/yuluoi/Compress-tool/main/install.sh)
 ```
 **注意**: 安装完成后，需要**完全关闭并重新打开 Termux**，才能使新命令生效。
 
