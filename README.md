@@ -70,3 +70,9 @@ bash <(curl -sL https://raw.githubusercontent.com/yuluoi/Compress-tool/main/inst
 1.  在本地克隆或修改 `compress.sh` 源代码。
 2.  将修改后的 `compress.sh` 推送到本 GitHub 仓库。
 3.  在需要更新的 Termux 设备上，重新运行上面的“一键部署”命令。安装脚本会自动覆盖旧版本，完成更新。
+
+## ❌ 一键卸载
+
+```bash
+bash <(curl -sL https://raw.githubusercontent.com/yuluoi/Compress-tool/main/uninstall.sh)
+```
